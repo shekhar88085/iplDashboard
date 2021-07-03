@@ -2,8 +2,13 @@ package io.edar.model;
 
 import java.time.LocalDate;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class Match {
-	private  Long ingid               ;
+	@Id
+	private  long id               ;
 	private  String city                ;
 	private  LocalDate date                ;
 	private  String playerOfMatch     ;
@@ -21,11 +26,11 @@ public class Match {
 	private  String umpire1             ;
 	private  String umpire2             ;
 	
-	public Long getIngid() {
-		return ingid;
+	public long getId() {
+		return id;
 	}
-	public void setIngid(Long ingid) {
-		this.ingid = ingid;
+	public void setId(long id) {
+		this.id = id;
 	}
 	public String getCity() {
 		return city;

@@ -1,7 +1,7 @@
 package io.edar.data;
 
 public class MatchInput {
-	private  String ingid               ;
+	private  String id               ;
 	private  String city                ;
 	private  String date                ;
 	private  String player_of_match     ;
@@ -18,11 +18,11 @@ public class MatchInput {
 	private  String method              ;
 	private  String umpire1             ;
 	private  String umpire2             ;
-	public String getIngid() {
-		return ingid;
+	public String getId() {
+		return id;
 	}
-	public void setIngid(String ingid) {
-		this.ingid = ingid;
+	public void setId(String ingid) {
+		this.id = ingid;
 	}
 	public String getCity() {
 		return city;

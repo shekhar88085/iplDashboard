@@ -2,7 +2,7 @@ package io.edar.data;
 
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
+//import java.time.LocalDateTime;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,7 +17,7 @@ public class MatchDataProcessor implements ItemProcessor<MatchInput, Match>{
 	  public Match process(final MatchInput matchInput) throws Exception {
 	   Match match=new Match();
 	  // match.setIngid(matchInput.getIngid());
-	   match.setIngid(Long.parseLong(matchInput.getIngid()));
+	   match.setId(Long.parseLong(matchInput.getId()));
 	   match.setCity(matchInput.getCity());
 	   match.setDate(LocalDate.parse(matchInput.getDate()));
 	   match.setPlayerOfMatch(matchInput.getPlayer_of_match());
@@ -26,11 +26,42 @@ public class MatchDataProcessor implements ItemProcessor<MatchInput, Match>{
 	   //setting team 1 and team 2 according to the innings order
 	  
 	   String firstInningsTeam,secondInningsTeamString;
-	   if("bat".equals(matchInput.getToss_decision()))
+	   if("bat".equals(matchInput.getToss_decision())) {
+		   firstInningsTeam=matchInput.getToss_winner();
+		   secondInningsTeamString=matchInput.getToss_winner().equals(matchInput.getTeam1())?matchInput.getTeam2():matchInput.getTeam1();   
+	   }
+	  
+	   else {
+		   firstInningsTeam=matchInput.getToss_winner().equals(matchInput.getTeam1())?matchInput.getTeam2():matchInput.getTeam1();
+		   secondInningsTeamString=matchInput.getToss_winner();
+	}
+	   match.setTeam1(firstInningsTeam);
+	   match.setTeam2(secondInningsTeamString);
+	   match.setTossWinner(matchInput.getToss_winner());
+	   //match.setMatchWinner(matchInput.setWinner(null));
+	   match.setTossDecision(matchInput.getToss_decision());
+	   match.setResult(matchInput.getResult());
+	   match.setResultMargin(matchInput.getResult_margin());
+	   match.setUmpire1(matchInput.getUmpire1());
+	   match.setUmpire2(matchInput.getUmpire2());
 	   
-	   match.setTossWinner(matchInput.setToss_winner());
-	   match.setMatchWinner(matchInput.setWinner(null));
 	   return match;
 	  }
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
